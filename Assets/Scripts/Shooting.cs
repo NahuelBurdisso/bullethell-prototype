@@ -9,11 +9,19 @@ public class Shooting : MonoBehaviour
 
     public float bulletForce = 20f;
 
+
+    // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        // Check if the game is paused
+        if (PauseMenu.GameIsPaused == false)
         {
-            Shoot();
+            // Check if the left mouse button is pressed
+            if (Input.GetButtonDown("Fire1"))
+            {
+                // Spawn bullet at firePoint
+                Shoot();
+            }
         }
     }
 

@@ -5,6 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 2.0f;
+
+    // define player health
+    public int health = 3;
+
     public Camera cam;
     private Rigidbody2D playerRb;
     Vector2 movement;
@@ -20,7 +24,6 @@ public class PlayerController : MonoBehaviour
         // Input
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
 
@@ -39,7 +42,13 @@ public class PlayerController : MonoBehaviour
 
     public void Damage()
     {
-        Destroy(gameObject);
+        health--;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+
+
+        }
     }
 
 

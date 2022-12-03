@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour
         // Reduce player health if it collides with the enemy
         if (collision.CompareTag("Player"))
         {
+            Destroy(gameObject);
             PlayerController playerController = collision.GetComponent<PlayerController>();
             if (playerController != null)
             {
@@ -49,4 +50,11 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
+    public void TakeDamage  (int damage)
+    {
+        // Destroy enemy when it takes damage
+        Destroy(gameObject);
+    }
+
 }
