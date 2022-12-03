@@ -37,5 +37,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void Damage()
+    {
+        Destroy(gameObject);
+    }
+
 
 }
