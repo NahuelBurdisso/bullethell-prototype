@@ -5,10 +5,15 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     // Spawn enemy prefab
-    public GameObject enemyPrefab;
+    public GameObject[] enemiesPrefabs;
 
     // Spawn rate
     public float spawnRate = 2f;
+
+    // Spawn range
+    public float spawnRange = 9f;
+
+    public float minTopSpawn = 4f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,16 +22,18 @@ public class EnemySpawner : MonoBehaviour
         InvokeRepeating("SpawnEnemy", 1f, spawnRate);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     void SpawnEnemy()
     {
-        // Instantiate enemy at random x position at top of screen
-        Instantiate(enemyPrefab, new Vector2(Random.Range(-8f, 8f), 7), Quaternion.identity);
+        // Randomly pick an enemy prefab
+        int enemyIndex = Random.Range(0, enemiesPrefabs.Length);
+
+        // Randomly pick a spawn position
+        Vector3 spawnPos = new Vector3(Random.Range(-spawnRange, spawnRange), minTopSpawn, spawnRange);
+
+        // Spawn enemy at the spawn position
+        Instantiate(enemiesPrefabs[enemyIndex], spawnPos, enemiesPrefabs[enemyIndex].transform.rotation);
     }
 
     
